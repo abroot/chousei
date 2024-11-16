@@ -1,0 +1,13 @@
+# Node.js の依存関係
+node_modules/
+.DS_Store
+
+# ログファイル
+*.log
+
+# 環境変数ファイル
+.env
+
+# 他のビルド関連のファイルやディレクトリ
+dist/
+build/
