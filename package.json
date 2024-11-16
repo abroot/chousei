@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "express": "^4.21.1",
+    "puppeteer": "^23.8.0"
+  },
+  "name": "chousei",
+  "version": "1.0.0",
+  "main": "chousei.js",
+  "scripts": {
+    "start": "node chousei.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
