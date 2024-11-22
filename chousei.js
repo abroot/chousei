@@ -38,28 +38,41 @@ async function automateChoseiSan() {
         waitUntil: 'domcontentloaded'
     });
 
-    // 入力ボタンをクリック
-    console.log("Clicking input button...");
-    await page.click('#add_btn');
+    // 「ふくだりゅうじbot」の回答を探す
+    console.log("既存回答を確認");
+    const existingAnswer = await page.evaluate(() => {
+        const members = document.querySelectorAll('td[id^="member_"] a'); // IDが"member_"で始まる要素内のリンクを取得
+        return Array.from(members).some(member => member.textContent.trim() === 'ふくだりゅうじbot');
+    });
 
-    // フォームに入力
-    console.log("Filling out the form...");
-    await page.type('#f_name', 'ふくだりゅうじbot');
-    await page.type('.hitokoto-input', 'これはbotの入力');
+    // 既存回答の有無で分岐
+    if (existingAnswer) {
+        console.log("既に回答済みのためスキップ");
+    } else {
+        // 入力ボタンをクリック
+        console.log("Clicking input button...");
+        await page.click('#add_btn');
 
-    // 参加ステータスを「まる」に設定
-    console.log("Selecting participation status...");
-    await page.click('#oax_0_0');
+        // フォームに入力
+        console.log("Filling out the form...");
+        await page.type('#f_name', 'ふくだりゅうじbot');
+        await page.type('.hitokoto-input', 'これはbotの入力');
 
-    // フォーム送信
-    console.log("Submitting the form...");
-    await page.click('#memUpdBtn');
+        // 参加ステータスを「まる」に設定
+        console.log("Selecting participation status...");
+        await page.click('#oax_0_0');
 
-    // 結果が表示されるまで待機
-    console.log("Waiting for confirmation...");
-    await page.waitForSelector('.input-done');
+        // フォーム送信
+        console.log("Submitting the form...");
+        await page.click('#memUpdBtn');
 
-    console.log("Automation completed. Closing browser...");
+        // 結果が表示されるまで待機
+        console.log("Waiting for confirmation...");
+        await page.waitForSelector('.input-done');
+        console.log("Automation completed");
+    }
+    
+    console.log("Closing browser...");
     await browser.close();
 }
 
