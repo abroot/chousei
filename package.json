@@ -1,13 +1,13 @@
 {
   "dependencies": {
     "express": "^4.21.1",
-    "puppeteer": "^23.8.0"
+    "puppeteer-core": "^21.0.0",
+    "chrome-aws-lambda": "^10.2.0"
   },
   "name": "chousei",
   "version": "1.0.0",
   "main": "chousei.js",
   "scripts": {
-    "postinstall": "npx puppeteer install",
     "start": "node chousei.js"
   },
   "keywords": [],

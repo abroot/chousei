@@ -1,5 +1,6 @@
 const express = require('express');
-const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer-core');
+const chromium = require('chrome-aws-lambda');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -26,9 +27,9 @@ app.post('/webhook', async (req, res) => {
 async function automateChoseiSan() {
     console.log("Launching Puppeteer...");
     const browser = await puppeteer.launch({
-        headless: true,
-        args: ['--no-sandbox', '--disable-setuid-sandbox'],
-        executablePath: '/opt/render/.cache/puppeteer/chrome'
+        args: chromium.args,
+        executablePath: await chromium.executablePath,
+        headless: chromium.headless,
     });
 
     const page = await browser.newPage();
