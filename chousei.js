@@ -28,7 +28,7 @@ async function automateChoseiSan() {
     console.log("Launching Puppeteer...");
     const browser = await puppeteer.launch({
         args: chromium.args,
-        executablePath: await chromium.executablePath,
+        executablePath: await chromium.executablePath(),
         headless: chromium.headless,
     });
 
