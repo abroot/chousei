@@ -59,10 +59,10 @@ async function automateChoseiSan(url) {
 
     // 既存の回答を探す
     console.log("Checking for existing answers");
-    const existingAnswer = await page.evaluate((PARTICIPANT) => {
+    const existingAnswer = await page.evaluate((participantName) => {
         const members = document.querySelectorAll('td[id^="member_"] a'); // IDが"member_"で始まる要素内のリンクを取得
-        return Array.from(members).some(member => member.textContent.trim() === PARTICIPANT);
-    });
+        return Array.from(members).some(member => member.textContent.trim() === participantName);
+    }, PARTICIPANT);
 
     // 既存回答の有無で分岐
     if (existingAnswer) {
