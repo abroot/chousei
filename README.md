@@ -25,6 +25,7 @@
 ## todo
 - [done] メッセージ監視からwebhook投げる方法
     - https://odyprograming.com/line_messaging_api_get/#toc9
+    - https://blog.socialplus.jp/knowledge/line-webhook/
 - [done] GASのスクリプトで調整さんURLから回答する方法の調査
     - gasではむりそう。httpリクエストでしかできなそう。サーバ立ててヘッドレスブラウザ操作する方法しかなさそう
 - [done] ローカルでヘッドレスブラウザ使って調整さんに回答する
