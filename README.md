@@ -40,8 +40,7 @@
 - [pending] 複数人回答対応
     - PARTICIPANTを配列に。
     - 「既存の回答を探す」以降の処理をPARTICIPANT.countの数だけ回す
-- [ ] 名前を環境変数で設定する
-
+- [done] 名前を環境変数で設定する
 
 ## メモ
 - renderのdashboard
