@@ -52,7 +52,7 @@ async function automateChoseiSan(url) {
     });
 
     const page = await browser.newPage();
-    console.log("Navigating to Chousei-san page: ${url}");
+    console.log(`Navigating to Chousei-san page: ${url}`);
     await page.goto(url, {
         waitUntil: 'domcontentloaded'
     });
