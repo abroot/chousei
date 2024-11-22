@@ -4,6 +4,8 @@ const puppeteer = require('puppeteer-core');
 
 const app = express();
 const port = process.env.PORT || 3000;
+const PARTICIPANT = 'ふくだりゅうじbot';
+const COMMENT = 'ふくだりゅうじbot';
 
 // Webhook のリクエスト内容を解析するために body-parser を使用
 app.use(express.json());
@@ -38,16 +40,16 @@ async function automateChoseiSan() {
         waitUntil: 'domcontentloaded'
     });
 
-    // 「ふくだりゅうじbot」の回答を探す
-    console.log("既存回答を確認");
-    const existingAnswer = await page.evaluate(() => {
+    // 既存の回答を探す
+    console.log("Checking for existing answers");
+    const existingAnswer = await page.evaluate((BOT_NAME) => {
         const members = document.querySelectorAll('td[id^="member_"] a'); // IDが"member_"で始まる要素内のリンクを取得
-        return Array.from(members).some(member => member.textContent.trim() === 'ふくだりゅうじbot');
+        return Array.from(members).some(member => member.textContent.trim() === BOT_NAME);
     });
 
     // 既存回答の有無で分岐
     if (existingAnswer) {
-        console.log("既に回答済みのためスキップ");
+        console.log("Answer already exists, skipping");
     } else {
         // 入力ボタンをクリック
         console.log("Clicking input button...");
@@ -55,8 +57,8 @@ async function automateChoseiSan() {
 
         // フォームに入力
         console.log("Filling out the form...");
-        await page.type('#f_name', 'ふくだりゅうじbot');
-        await page.type('.hitokoto-input', 'これはbotの入力');
+        await page.type('#f_name', BOT_NAME);
+        await page.type('.hitokoto-input', COMMENT);
 
         // 参加ステータスを「まる」に設定
         console.log("Selecting participation status...");
