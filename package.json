@@ -2,7 +2,7 @@
   "dependencies": {
     "express": "^4.21.1",
     "puppeteer-core": "^22.7.1",
-    "@sparticuz/chromium": "^123.0.1"
+    "@sparticuz/chromium": "^124.0.1"
   },
   "name": "chousei",
   "version": "1.0.0",
