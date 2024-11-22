@@ -17,16 +17,33 @@ app.post('/webhook', async (req, res) => {
     console.log(req.body); // Webhook から送信された内容をログ出力
 
     try {
-        await automateChoseiSan();
-        res.status(200).send("Automation completed.");
+        // URLのチェック関数を呼び出す
+        const url = extractChouseiSanUrl(req.body);
+        if (url) {
+            await automateChoseiSan(url);
+            res.status(200).send("Automation completed.");
+        } else {
+            res.status(200).send("chouseisan.com not found.");
+        }
     } catch (error) {
         console.error("Error during automation:", error);
         res.status(500).send("Automation failed.");
     }
 });
 
+// Chousei-san URLを抽出する関数
+function extractChouseiSanUrl(body) {
+    if (!body || !body.events || !body.events[0] || !body.events[0].message || !body.events[0].message.text) {
+        return null; // 必要なデータがない場合はnullを返す
+    }
+
+    const text = body.events[0].message.text;
+    const match = text.match(/https?:\/\/chouseisan\.com\/s\?h=[a-zA-Z0-9]+/); // 正規表現で指定のフォーマットを検索
+    return match ? match[0] : null; // URLが見つかった場合は返す、見つからなければnull
+}
+
 // 自動入力関数
-async function automateChoseiSan() {
+async function automateChoseiSan(url) {
     console.log("Launching Puppeteer...");
     const browser = await puppeteer.launch({
         args: chromium.args,
@@ -35,8 +52,8 @@ async function automateChoseiSan() {
     });
 
     const page = await browser.newPage();
-    console.log("Navigating to Chousei-san page...");
-    await page.goto('https://chouseisan.com/s?h=519a02722c1f476f9fa239f38662dd6a', {
+    console.log("Navigating to Chousei-san page: ${url}");
+    await page.goto(url, {
         waitUntil: 'domcontentloaded'
     });
 
