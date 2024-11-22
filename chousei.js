@@ -40,6 +40,7 @@ function extractChouseiSanUrl(body) {
         return null; // 必要なデータがない場合はnullを返す
     }
 
+    console.log("message: " + body.events[0].message.text);
     const text = body.events[0].message.text;
     const match = text.match(/https?:\/\/chouseisan\.com\/s\?h=[a-zA-Z0-9]+/); // 正規表現で指定のフォーマットを検索
     return match ? match[0] : null; // URLが見つかった場合は返す、見つからなければnull
