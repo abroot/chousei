@@ -1,8 +1,8 @@
 {
   "dependencies": {
+    "@sparticuz/chromium": "^106.0.0",
     "express": "^4.21.1",
-    "puppeteer-core": "^22.7.1",
-    "@sparticuz/chromium": "^124.0.1"
+    "puppeteer-core": "^17.1.0"
   },
   "name": "chousei",
   "version": "1.0.0",
