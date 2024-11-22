@@ -1,6 +1,7 @@
 const express = require('express');
 const puppeteer = require('puppeteer-core');
-const chromium = require('chrome-aws-lambda');
+// const chromium = require('chrome-aws-lambda');
+const chromium = require("@sparticuz/chromium");
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -28,7 +29,7 @@ async function automateChoseiSan() {
     console.log("Launching Puppeteer...");
     const browser = await puppeteer.launch({
         args: chromium.args,
-        executablePath: await chromium.executablePath,
+        executablePath: await chromium.executablePath(),
         headless: chromium.headless,
     });
 
