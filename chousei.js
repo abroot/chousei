@@ -5,7 +5,7 @@ const puppeteer = require('puppeteer-core');
 const app = express();
 const port = process.env.PORT || 3000;
 const PARTICIPANT = 'ふくだりゅうじbot';
-const COMMENT = 'ふくだりゅうじbot';
+const COMMENT = 'bot コメント';
 
 // Webhook のリクエスト内容を解析するために body-parser を使用
 app.use(express.json());
@@ -59,9 +59,9 @@ async function automateChoseiSan(url) {
 
     // 既存の回答を探す
     console.log("Checking for existing answers");
-    const existingAnswer = await page.evaluate((BOT_NAME) => {
+    const existingAnswer = await page.evaluate((PARTICIPANT) => {
         const members = document.querySelectorAll('td[id^="member_"] a'); // IDが"member_"で始まる要素内のリンクを取得
-        return Array.from(members).some(member => member.textContent.trim() === BOT_NAME);
+        return Array.from(members).some(member => member.textContent.trim() === PARTICIPANT);
     });
 
     // 既存回答の有無で分岐
@@ -74,7 +74,7 @@ async function automateChoseiSan(url) {
 
         // フォームに入力
         console.log("Filling out the form...");
-        await page.type('#f_name', BOT_NAME);
+        await page.type('#f_name', PARTICIPANT);
         await page.type('.hitokoto-input', COMMENT);
 
         // 参加ステータスを「まる」に設定
