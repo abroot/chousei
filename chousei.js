@@ -4,8 +4,8 @@ const puppeteer = require('puppeteer-core');
 
 const app = express();
 const port = process.env.PORT || 3000;
-const PARTICIPANT = 'ふくだりゅうじ';
-const COMMENT = 'bot';
+const PARTICIPANT = process.env.PARTICIPANT || 'dafault';
+const COMMENT = process.env.COMMENT || 'bot';
 
 // Webhook のリクエスト内容を解析するために body-parser を使用
 app.use(express.json());
@@ -13,6 +13,8 @@ app.use(express.urlencoded({ extended: true }));
 
 // Webhook エンドポイント
 app.post('/webhook', async (req, res) => {
+    console.log("回答者: " + process.env.PARTICIPANT);
+    console.log("コメント: " + process.env.COMMENT);
     console.log("Webhook received. Request body:");
     console.log(req.body); // Webhook から送信された内容をログ出力
 
