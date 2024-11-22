@@ -4,8 +4,8 @@ const puppeteer = require('puppeteer-core');
 
 const app = express();
 const port = process.env.PORT || 3000;
-const PARTICIPANT = 'ふくだりゅうじbot';
-const COMMENT = 'bot コメント';
+const PARTICIPANT = 'ふくだりゅうじ';
+const COMMENT = 'bot';
 
 // Webhook のリクエスト内容を解析するために body-parser を使用
 app.use(express.json());
@@ -23,6 +23,7 @@ app.post('/webhook', async (req, res) => {
             await automateChoseiSan(url);
             res.status(200).send("Automation completed.");
         } else {
+            console.log("chouseisan.com not found.");
             res.status(200).send("chouseisan.com not found.");
         }
     } catch (error) {
