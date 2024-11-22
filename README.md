@@ -47,6 +47,8 @@
 - lineプラットフォーム
     - https://manager.line.biz/
     - https://developers.line.biz/ja/
+- 検証用調整さん
+    - https://chouseisan.com/s?h=519a02722c1f476f9fa239f38662dd6a
 
 - アプリ直リクエストcurl
 ```
