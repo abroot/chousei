@@ -2,7 +2,7 @@
   "dependencies": {
     "express": "^4.21.1",
     "puppeteer-core": "^21.0.0",
-    "chrome-aws-lambda": "^10.2.0"
+    "chrome-aws-lambda": "^10.1.0"
   },
   "name": "chousei",
   "version": "1.0.0",
