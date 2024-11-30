@@ -45,6 +45,7 @@
 ## メモ
 - renderのdashboard
     - https://dashboard.render.com/
+    - 無料分確認: https://dashboard.render.com/billing#free-usage
 - lineプラットフォーム
     - https://manager.line.biz/
     - https://developers.line.biz/ja/
