@@ -11,3 +11,4 @@ node_modules/
 # 他のビルド関連のファイルやディレクトリ
 dist/
 build/
+memo.md
