@@ -20,3 +20,4 @@
     - 無料プランでは15分リクエストがないとサーバがスリープする
         - 公式docs: https://render.com/docs/free#spinning-down-on-idle
         - 対策: https://zenn.dev/no215/articles/ff4f1670c080e4
+        - トリガは10分おきに作動。jsで土曜11:45-12:15にのみアプリを起こすように設定。
